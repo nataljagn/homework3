@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import BookData from './BookData';
+import BooksList from './BooksList';
+import { BOOKS } from './andmed';
+import { useState } from 'react';
+
+
+
 
 function App() {
+
+  const [valitudRaamatuId, setValitudRaamatuId] = useState(0);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+  <div calssName="App">
+    <header className="App-header" style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+
+
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <strong> Top 3: Bestselling Books</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+        {
+          BOOKS.map((book, index) => (
+            <div >
+              <a style={{cursor: 'pointer'}} key={book.name} onClick={() => setValitudRaamatuId(index)} ><BooksList book={book}></BooksList></a>
+              <br />
+            </div>
+          ))
+        }</div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        { <BookData bookdata={BOOKS[valitudRaamatuId]} />}
+       </div>
+    </header>
+  </div>
+
+);
 }
 
 export default App;
