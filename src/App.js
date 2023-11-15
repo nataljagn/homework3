@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [valitudRaamatuId, setValitudRaamatuId] = useState(0);
+  const [valitudRaamatuId, setValitudRaamatuId] = useState(null);
 
 
 
@@ -27,13 +27,13 @@ function App() {
         {
           BOOKS.map((book, index) => (
             <div >
-              <a style={{cursor: 'pointer'}} key={book.name} onClick={() => setValitudRaamatuId(index)} ><BooksList book={book}></BooksList></a>
+              <a style={{cursor: 'pointer' }} key={book.name} onClick={() => setValitudRaamatuId(index)} ><BooksList book={book}></BooksList></a>
               <br />
             </div>
           ))
         }</div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        { <BookData bookdata={BOOKS[valitudRaamatuId]} />}
+        { valitudRaamatuId != null ? <BookData  bookdata={BOOKS[valitudRaamatuId]} /> : null}
        </div>
     </header>
   </div>
